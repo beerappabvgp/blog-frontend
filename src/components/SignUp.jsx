@@ -4,6 +4,7 @@ import { signUpApi } from "../api/client";
 
 export const Signup = () => {
     const handleSubmit = () => {
+        console.log("handle submit ....")
         // make an api call
         signUpApi();
     }

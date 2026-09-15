@@ -16,9 +16,10 @@ export const client = axios.create({
 // http://localhost:3000/api/v1/users/create-user
 // method: post 
 
-export const signUpApi =  async () => {
+export const signUpApi =  async (userData) => {
     try {
-        const response = await client.post("/users/create-user");
+        const response = await client.post("/users/create-user", userData);
+        return response;
     } catch (error) {
         console.error("error while signing up ...", error);
     }
