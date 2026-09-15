@@ -7,6 +7,12 @@ export const Navbar = () => {
                 <img src="./logo.jpeg" alt="logo"></img>
                 <h1>Blogs</h1>  
             </div>
+
+            {/* item2  */}
+            <div className='blogs'>
+                <p>My Blogs</p>
+                <p>Create Blog</p>
+            </div>
             <div className="nav-item2">
                 <button>Signup</button>
                 <button>Login</button>
