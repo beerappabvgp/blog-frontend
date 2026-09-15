@@ -5,10 +5,10 @@ import { Signup } from "./components/SignUp";
 const App = () => {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/signup" element={<Signup />}/>
       </Routes>
-      <Navbar />
     </div>
   );
 }
