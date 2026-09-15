@@ -1,11 +1,18 @@
 // we need to write the logic to signup 
 
+import { signUpApi } from "../api/client";
+
 export const Signup = () => {
+    const handleSubmit = () => {
+        // make an api call
+        signUpApi();
+    }
     return (
         <div>
             <h1>SignUp</h1>
             <div>
-                <form action="">
+                {/* we need to call the signup api once they submit the form */}
+                <form action="" onSubmit={handleSubmit}>
                     {/* first field */}
                     <div>
                         <label htmlFor="">Username</label>
