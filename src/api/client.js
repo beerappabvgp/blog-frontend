@@ -22,5 +22,21 @@ export const signUpApi =  async (userData) => {
         return response;
     } catch (error) {
         console.error("error while signing up ...", error);
+        throw error;
+    }
+}
+
+export const loginApi = async (userData) => {
+    try {
+        const response = await client.post("/users/login", userData);
+        // we need to store the token and the user data in the localstorage if response is valid 
+        if (response.data) {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("userData", JSON.stringify(response.data.data));
+        }
+        return response;
+    } catch (error) {
+        console.error("error while sending api call to login");
+        throw error;
     }
 }

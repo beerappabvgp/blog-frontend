@@ -1,0 +1,62 @@
+.signup-par {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid yellow;
+    border-radius: 15px;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.form-input label {
+    font-size: 60px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input input {
+    width: 750px;
+    height: 80px;
+    font-size: 40px;
+    border-radius: 10px;
+    color: black;
+}
+
+.signup-par h1 {
+    font-size: 100px;
+    color: aqua;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#submit-button {
+    font-size: 50px;
+    width: 500px;
+    height: 100px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    border: 5px solid teal;
+    background-color: teal;
+    color: yellow;
+}
+
+/* we need to style placeholder */
+.form-input input::placeholder {
+    margin-left: 40px;
+    padding-left: 40px;
+    font-size: 30px;
+}

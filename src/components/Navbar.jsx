@@ -1,6 +1,18 @@
+import { useState } from 'react';
 import '../styles/navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
+
+    const navigate = useNavigate();
+    const handleSignupClick = () => {
+        navigate('/signup')
+    }
+
+    const handleLoginClick = () => {
+        navigate('/login');
+    }
+
     return (
         <div className="nav">
             <div className="nav-item1">
@@ -14,8 +26,9 @@ export const Navbar = () => {
                 <p>Create Blog</p>
             </div>
             <div className="nav-item2">
-                <button>Signup</button>
-                <button>Login</button>
+                {/* when clicked on signup we need to navigate the user to the signup page */}
+                <button onClick={handleSignupClick}>Signup</button>
+                <button onClick={handleLoginClick}>Login</button>
             </div>
         </div>
     );
