@@ -1,13 +1,10 @@
-// we need to write the logic to signup 
-
 import { useState } from "react";
 import { signUpApi } from "../api/client";
-import '../styles/signup.css';
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import '../styles/signup.css';
+
 export const Signup = () => {
-
-    // state of the form fields 
-
     const navigate = useNavigate();
 
     const [userData, setUserData] = useState({
@@ -18,89 +15,108 @@ export const Signup = () => {
         bio: ""
     });
 
-    // we need to store the response from the server
-    const [response, setResponse] = useState(null);
-
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setUserData((prevData) => {
-            return {
-                ...prevData,
-                [name]: value, 
-            }
-        })
-    }
-
+        const { name, value } = e.target;
+        setUserData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("handle submit ....")
-        // make an api call
-        const res = await signUpApi(userData);
-        console.log("response: ", res);
-        if (res) {
-            setResponse(res);
-            // if there is no error only then we need to show successful message or else we need to show the error message 
-            // and once the user is created successfully we need to clear the form
-            if (res.data) {
-                alert("User created successfully ... ");
-                navigate("/login");
-            } else {
-                alert("Failed to create user");
-            }
-            setUserData({
-                username: "",
-                password: "",
-                email: "",
-                contact: "",
-                bio: ""
-            });
-        } else {
-            alert("Failed to create user");
+
+        try {
+            const res = await signUpApi(userData);
+            toast.success(res.data?.message || "User created successfully!");
+            navigate("/login");
+        } catch (error) {
+            // Show backend error message or validation issue in toast
+            const errorMessage = 
+                error.response?.data?.errors?.[0]?.message || 
+                error.response?.data?.message || 
+                "Failed to create user";
+            toast.error(errorMessage);
         }
-    }
+    };
+
     return (
         <div className="signup-par">
-            <h1>SignUp Form</h1>
-            <div>
-                {/* we need to call the signup api once they submit the form */}
-                <form action="" onSubmit={handleSubmit} className="form">
-                    {/* first field */}
-                    <div className="form-input">
-                        <label htmlFor="">Username: </label>
-                        <input type="text" name="username" required placeholder="Enter your name" onChange={handleChange} value={userData.username}/>
-                    </div>
+            <h1>Create an Account</h1>
+            <p className="auth-subtitle">Join us to share stories, connect, and read blogs</p>
+            <form onSubmit={handleSubmit} className="form">
+                <div className="form-input">
+                    <label htmlFor="signup-username">Username</label>
+                    <input
+                        type="text"
+                        id="signup-username"
+                        name="username"
+                        required
+                        placeholder="Choose a username"
+                        onChange={handleChange}
+                        value={userData.username}
+                    />
+                </div>
 
-                    {/* email field */}
-                    <div className="form-input">
-                        <label>Email: </label>
-                        <input type="email" name = "email" required placeholder="Enter your email address" onChange={handleChange} value={userData.email} />
-                    </div>
+                <div className="form-input">
+                    <label htmlFor="signup-email">Email</label>
+                    <input
+                        type="email"
+                        id="signup-email"
+                        name="email"
+                        required
+                        placeholder="name@example.com"
+                        onChange={handleChange}
+                        value={userData.email}
+                    />
+                </div>
 
-                    {/* password field */}
-                    <div className="form-input">
-                        <label htmlFor="">Password: </label>
-                        <input type="password" name = "password" required placeholder="Enter your password" onChange={handleChange} value={userData.password} />
-                    </div>
+                <div className="form-input">
+                    <label htmlFor="signup-password">Password</label>
+                    <input
+                        type="password"
+                        id="signup-password"
+                        name="password"
+                        required
+                        placeholder="At least 8 characters"
+                        onChange={handleChange}
+                        value={userData.password}
+                    />
+                </div>
 
-                    {/* contact field */}
-                    <div className="form-input">
-                        <label htmlFor="">Contact: </label>
-                        <input type="text" name = "contact" required placeholder="Enter your contact number" onChange={handleChange} value={userData.contact}/>
-                    </div>
+                <div className="form-input">
+                    <label htmlFor="signup-contact">Contact</label>
+                    <input
+                        type="text"
+                        id="signup-contact"
+                        name="contact"
+                        required
+                        placeholder="Your phone number"
+                        onChange={handleChange}
+                        value={userData.contact}
+                    />
+                </div>
 
-                    {/* Bio of the user */}
-                    <div className="form-input">
-                        <label htmlFor="">Bio: </label>
-                        <input type="text" name = "bio" placeholder="Enter your Bio" onChange={handleChange} value={userData.bio} />
-                    </div>
+                <div className="form-input">
+                    <label htmlFor="signup-bio">Bio (optional)</label>
+                    <input
+                        type="text"
+                        id="signup-bio"
+                        name="bio"
+                        placeholder="A short intro about yourself"
+                        onChange={handleChange}
+                        value={userData.bio}
+                    />
+                </div>
 
-                    {/* submit button */}
-                    <div>
-                        <button type="submit" id="submit-button">Submit</button>
-                    </div>
-                </form>
-            </div>
+                <div>
+                    <button type="submit" id="submit-button">Create Account</button>
+                </div>
+            </form>
+            <p className="auth-footer">
+                Already have an account?
+                <span onClick={() => navigate('/login')}>Sign in</span>
+            </p>
         </div>
     );
-}
+};

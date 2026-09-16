@@ -1,8 +1,23 @@
-body {
-    background-color: black;
-    color: white;
+/* Basic Reset and Global Styles (No CSS Variables) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-* {
-    margin: 0px;
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0f172a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: inherit;
 }

@@ -1,6 +1,3 @@
-// we will centralize all the api calls 
-
-
 import axios from "axios";
 
 export const client = axios.create({
@@ -11,32 +8,31 @@ export const client = axios.create({
     },
 });
 
+// Signup API call
+export const signUpApi = async (userData) => {
+    return await client.post("/users/create-user", userData);
+};
 
-// signup api call
-// http://localhost:3000/api/v1/users/create-user
-// method: post 
-
-export const signUpApi =  async (userData) => {
-    try {
-        const response = await client.post("/users/create-user", userData);
-        return response;
-    } catch (error) {
-        console.error("error while signing up ...", error);
-        throw error;
-    }
-}
-
+// Login API call
 export const loginApi = async (userData) => {
+    const response = await client.post("/users/login", userData);
+    
+    // Save token and user data to localStorage
+    if (response.data?.data) {
+        localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("userData", JSON.stringify(response.data.data.user));
+    }
+    
+    return response;
+};
+
+// http://localhost:3000/api/v1/blogs
+
+export const fetchBlogs = async () => {
     try {
-        const response = await client.post("/users/login", userData);
-        // we need to store the token and the user data in the localstorage if response is valid 
-        if (response.data) {
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("userData", JSON.stringify(response.data.data));
-        }
+        const response = await client.get("/blogs");
         return response;
     } catch (error) {
-        console.error("error while sending api call to login");
         throw error;
     }
-}
+} 

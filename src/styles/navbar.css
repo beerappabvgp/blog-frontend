@@ -1,49 +1,94 @@
+/* Navbar Styles (No CSS Variables) */
 .nav {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid white;
-    border-radius: 10px;
-    padding: 20px;
+    padding: 16px 40px;
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .nav-item1 {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
     align-items: center;
-}
-
-.nav-item2 {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+    gap: 12px;
+    cursor: pointer;
 }
 
 .nav-item1 img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
-
-.nav-item2 button {
-    width: 120px;
-    height: 60px;
-    font-size: 25px;
-    border-radius: 5%;
-    background-color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .nav-item1 h1 {
-    font-size: 60px;
-    font-weight: bold;
-    color: aqua;
+    font-size: 22px;
+    font-weight: 700;
+    color: #6366f1;
 }
 
 .blogs {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
-    font-size: 35px;
+    gap: 28px;
+}
+
+.blogs p {
+    font-size: 15px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.blogs p:hover {
+    color: #ffffff;
+}
+
+.nav-item2 {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-item2 button {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Signup button (primary) */
+.nav-item2 button:first-child {
+    background-color: #6366f1;
+    color: #ffffff;
+}
+
+.nav-item2 button:first-child:hover {
+    background-color: #4f46e5;
+}
+
+/* Login button (outline) */
+.nav-item2 button:last-child {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #475569;
+}
+
+.nav-item2 button:last-child:hover {
+    background-color: #334155;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 14px 20px;
+    }
+
+    .blogs {
+        display: none;
+    }
 }

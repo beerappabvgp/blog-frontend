@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import '../styles/navbar.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,9 +14,9 @@ export const Navbar = () => {
 
     return (
         <div className="nav">
-            <div className="nav-item1">
-                <img src="./logo.jpeg" alt="logo"></img>
-                <h1>Blogs</h1>  
+            <div className="nav-item1" onClick={() => navigate('/')}>
+                <img src="./logo.jpeg" alt="logo" onError={(e) => { e.target.style.display = 'none'; }} />
+                <h1>ByteBlog</h1>  
             </div>
 
             {/* item2  */}

@@ -1,0 +1,32 @@
+/* we will disaply two blogs in one row  */
+
+.blogs-par {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.blog-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 2px solid aqua;
+    border-radius: 20px;
+    padding: 40px;
+    width: 50%;
+    height: 350px;
+}
+
+.blog-item h1 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;    
+}
+
+.blog-item p {
+    font-size: 25px;
+    color: white;
+}
